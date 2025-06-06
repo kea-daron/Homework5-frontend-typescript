@@ -1,5 +1,3 @@
-
-
 export interface NavItem {
   href: string;
   label: string;
@@ -10,9 +8,9 @@ export class SimpleNavbar {
   private static navItems: NavItem[] = [
     { href: "#home", label: "Home" },
     { href: "#products", label: "Products" },
-    { href: "#categories", label: "Categories" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    // { href: "#categories", label: "Categories" },
+    // { href: "#about", label: "About" },
+    // { href: "#contact", label: "Contact" },
   ];
 
   public static setCartCount(count: number): void {
@@ -41,16 +39,14 @@ export class SimpleNavbar {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-16">
             
-            <!-- Logo -->
             <div class="flex items-center">
               <div class="flex-shrink-0">
                 <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  SimpleStore
+                  RonnnStore
                 </a>
               </div>
             </div>
 
-            <!-- Desktop Navigation -->
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-8">
                 ${this.navItems
@@ -68,16 +64,10 @@ export class SimpleNavbar {
               </div>
             </div>
 
-            <!-- Right Side Icons -->
             <div class="hidden md:flex items-center space-x-4">
-              <!-- Search -->
-              <button onclick="SimpleNavbar.handleSearch()" class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-              </button>
+
               
-              <!-- Theme Toggle -->
+              
               <button onclick="ThemeManager.toggle()" class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
                 <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -87,24 +77,8 @@ export class SimpleNavbar {
                 </svg>
               </button>
               
-              <!-- User Account -->
-              <button onclick="SimpleNavbar.handleAccount()" class="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                </svg>
-              </button>
-              
-              <!-- Shopping Cart -->
-              <button onclick="SimpleNavbar.handleCart()" class="relative p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6.1"></path>
-                </svg>
-                <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium ${
-                  this.cartCount > 0 ? "" : "hidden"
-                }">
-                  ${this.cartCount}
-                </span>
-              </button>
+             
+
             </div>
 
             <!-- Mobile menu button -->

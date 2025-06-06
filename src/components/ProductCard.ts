@@ -48,107 +48,59 @@ export function ProductCard(product: Product): string {
     new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
   return `
-    <div class="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 group" onclick="window.location.hash='#product-${
-      product.id
-    }'">
-        
-        <!-- Product Image Container -->
-        <div class="relative mb-6 overflow-hidden rounded-2xl bg-slate-700/30">
-            <img 
-                src="${primaryImage}" 
-                alt="${cleanTitle}"
-                class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'"
-            >
-            
-            <!-- Category Badge -->
-            <div class="absolute top-4 left-4">
-                <span class="bg-blue-500/20 backdrop-blur-sm text-blue-300 px-3 py-1.5 rounded-full text-xs font-medium border border-blue-400/20">
-                    ${product.category.name}
-                </span>
-            </div>
-            
-            <!-- New Badge (if applicable) -->
-            ${
-              isNew
-                ? `
-            <div class="absolute top-4 right-4">
-                <span class="bg-red-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
-                    NEW
-                </span>
-            </div>
-            `
-                : ""
-            }
+   <body class="flex items-center justify-center min-h-screen p-4">
+  <div class="max-w-sm w-full bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden border dark:border-gray-700 transition-colors">
+    <img src="${primaryImage}" alt=""
+      class="w-full h-64 object-cover" />
+    
+    <div class="p-4 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-semibold text-pink-600 dark:text-pink-400">Essence</span>
+        <span class="text-xs bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100 px-2 py-0.5 rounded">
+          In Stock (99)
+        </span>
+      </div>
+
+      <h2 class="text-lg font-bold">${cleanTitle}</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-300">
+        The Essence Mascara is known for volumizing and lengthening. Cruelty-free, dramatic lashes.
+      </p>
+
+      <div class="flex items-center gap-2 text-yellow-500">
+        <span class="text-sm">Rating:</span>
+        <div class="flex">
+          <span>⭐</span>
+          <span>⭐</span>
+          <span>⭐</span>
+          <span class="text-gray-300 dark:text-gray-600">⭐</span>
+          <span class="text-gray-300 dark:text-gray-600">⭐</span>
         </div>
-        
-        <!-- Product Info -->
-        <div class="space-y-4">
-            <!-- Title -->
-            <h3 class="text-white text-xl font-semibold leading-tight line-clamp-2" title="${
-              product.title
-            }">
-                ${cleanTitle}
-            </h3>
-            
-            <!-- Description -->
-            <p class="text-slate-400 text-sm leading-relaxed line-clamp-3" title="${
-              product.description
-            }">
-                ${truncatedDescription}
-            </p>
-            
-            <!-- Price Section -->
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <span class="text-white text-2xl font-bold">$${
-                      product.price
-                    }</span>
-                </div>
-                
-                <!-- Rating -->
-                <div class="flex items-center space-x-1">
-                    <div class="flex text-yellow-400">
-                        ${Array.from({ length: 5 }, (_, i) => {
-                          if (i < fullStars) {
-                            return `<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                    </svg>`;
-                          } else if (i === fullStars && hasHalfStar) {
-                            return `<svg class="w-4 h-4 fill-current opacity-60" viewBox="0 0 20 20">
-                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                    </svg>`;
-                          } else {
-                            return `<svg class="w-4 h-4 fill-current opacity-30" viewBox="0 0 20 20">
-                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                    </svg>`;
-                          }
-                        }).join("")}
-                    </div>
-                    <span class="text-slate-400 text-sm">${rating}</span>
-                </div>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="flex space-x-3 pt-2">
-                <button 
-                    class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 active:transform active:scale-95"
-                    onclick="addToCart(${product.id})"
-                >
-                    Add to Cart
-                </button>
-                
-                <button 
-                    class="bg-slate-700 hover:bg-slate-600 text-white p-3 rounded-xl transition-all duration-200 hover:shadow-lg group"
-                    onclick="toggleWishlist(${product.id})"
-                >
-                    <svg class="w-5 h-5 group-hover:text-red-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                    </svg>
-                </button>
-            </div>
+        <span class="text-sm text-gray-500 dark:text-gray-400">(2.56)</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-lg font-bold text-gray-900 dark:text-white">$9.99</span>
+          <span class="text-sm line-through text-gray-500 ml-2">$11.16</span>
         </div>
+        <span class="text-xs bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100 px-2 py-0.5 rounded">
+          -10.48%
+        </span>
+      </div>
+
+      <div class="text-xs mt-2 text-gray-500 dark:text-gray-400">
+        Ships in 3-5 business days | 1-week warranty
+      </div>
+
+      <button class="w-full mt-4 bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg transition-all dark:bg-pink-500 dark:hover:bg-pink-600">
+        Add to Cart
+      </button>
     </div>
+  </div>
+
+  <!-- Dark mode toggle -->
+  
+</body>
   `;
 }
 
