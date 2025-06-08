@@ -63,17 +63,13 @@ export function ProductCard(product: Product): string {
 
       <h2 class="text-lg font-bold">${cleanTitle}</h2>
       <p class="text-sm text-gray-600 dark:text-gray-300">
-        The Essence Mascara is known for volumizing and lengthening. Cruelty-free, dramatic lashes.
+        ${truncatedDescription}
       </p>
 
       <div class="flex items-center gap-2 text-yellow-500">
         <span class="text-sm">Rating:</span>
         <div class="flex">
-          <span>⭐</span>
-          <span>⭐</span>
-          <span>⭐</span>
-          <span class="text-gray-300 dark:text-gray-600">⭐</span>
-          <span class="text-gray-300 dark:text-gray-600">⭐</span>
+          ${rating}
         </div>
         <span class="text-sm text-gray-500 dark:text-gray-400">(2.56)</span>
       </div>
